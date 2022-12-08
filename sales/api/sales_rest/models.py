@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class AutomobileVO(models.Model):
-    import_href = models.CharField(max_length=100)
+    # import_href = models.CharField(max_length=100)
     vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
@@ -21,27 +21,27 @@ class Customer(models.Model):
 
 
 class SalesPerson(models.Model):
-    sales_person_name = models.CharField(max_length=100)
+    salesperson_name = models.CharField(max_length=100)
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
     def __str__(self):
-        return self.sales_person_name
+        return self.salesperson_name
 
 
 class SalesRecord(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     sales_record_number = models.PositiveSmallIntegerField(unique=True)
-    customer_number = models.ForeignKey(
+    customer_name = models.ForeignKey(
         Customer,
-        related_name='record_customer_number',
+        related_name='record_customer_name',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
 
-    employee_number = models.ForeignKey(
+    salesperson_name = models.ForeignKey(
         SalesPerson,
-        related_name='record_employee_number',
+        related_name='record_salesperson_name',
         on_delete=models.CASCADE,
         null=True,
         blank=True,

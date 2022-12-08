@@ -44,4 +44,4 @@ class Automobile(models.Model):
         return reverse("api_automobile", kwargs={"vin": self.vin})
 
     def __str__(self):
-        return f"{self.vin}: {self.year} {self.model}"
+        return f"{self.year} {self.model} ({self.color}) - {self.vin}"

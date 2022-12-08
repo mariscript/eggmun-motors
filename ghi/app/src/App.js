@@ -1,18 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import Nav from './Nav';
-<<<<<<< HEAD
+import './index.css';
 // import CustomerForm from './CustomerForm';
 // import SalesPersonForm from './SalesPersonForm';
 // import SalesRecordForm from './SalesRecordForm';
 // import SalesRecordList from './SalesRecordList';
 // import SalesPersonSalesList from './SalesPersonSalesHistory';
-
-
-
-=======
-import './index.css';
->>>>>>> fecdaa953c8813524061ddb4cb4138523efd2457
 
 function App() {
   return (
