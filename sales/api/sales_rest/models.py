@@ -1,9 +1,10 @@
 from django.db import models
-# from django.urls import reverse
+from decimal import Decimal
+
 
 # Create your models here.
 class AutomobileVO(models.Model):
-    # import_href = models.CharField(max_length=100)
+    import_href = models.CharField(max_length=100, default=False)
     vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
@@ -12,7 +13,6 @@ class AutomobileVO(models.Model):
 
 class Customer(models.Model):
     customer_name = models.CharField(max_length=100)
-    customer_number = models.PositiveSmallIntegerField(unique=True)
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=14)
 
@@ -29,19 +29,17 @@ class SalesPerson(models.Model):
 
 
 class SalesRecord(models.Model):
-    price = models.DecimalField(max_digits=8, decimal_places=2)
-    sales_record_number = models.PositiveSmallIntegerField(unique=True)
-    customer_name = models.ForeignKey(
-        Customer,
-        related_name='record_customer_name',
+    salesperson_name = models.ForeignKey(
+        SalesPerson,
+        related_name='salesperson_names',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
 
-    salesperson_name = models.ForeignKey(
-        SalesPerson,
-        related_name='record_salesperson_name',
+    customer_name = models.ForeignKey(
+        Customer,
+        related_name='customer_names',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -49,17 +47,47 @@ class SalesRecord(models.Model):
 
     automobile = models.ForeignKey(
         AutomobileVO,
-        related_name='record_vin',
+        related_name='vins',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
 
-    def __str__(self):
-        return(str(self.sales_record_number))
+    price = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('20000.00'))
 
-# class SalesPersonHistory(models.Model)
+    def __str__(self):
+        return f"{self.salesperson_name}, {self.customer_name}, {self.automobile}, {self.price}"
+
+
+# class SalesHistory(models.Model):
 #     employee_number = models.ForeignKey(
 #         SalesPerson,
-#         related_name=''
+#         related_name='employee_numbers',
+#         on_delete=models.CASCADE,
+#         null=True,
+#         blank=True,
+#     )
+
+#     salesperson_name = models.ForeignKey(
+#         SalesPerson,
+#         related_name='salesperson_names'
+#         on_delete=models.CASCADE,
+#         null=True,
+#         blank=True,
+#     )
+
+#     customer_name = models.ForeignKey(
+#         Customer,
+#         related_name='customer_names',
+#         on_delete=models.CASCADE,
+#         null=True,
+#         blank=True,
+#     )
+
+#     vin = models.ForeignKey(
+#         AutomobileVO,
+#         related_name='vins',
+#         on_delete=models.CASCADE,
+#         null=True,
+#         blank=True,
 #     )

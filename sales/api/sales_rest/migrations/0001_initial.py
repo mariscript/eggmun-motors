@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             name='SalesPerson',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('salesperson_name', models.CharField(max_length=100)),
+                ('sales_person_name', models.CharField(max_length=100)),
                 ('employee_number', models.PositiveSmallIntegerField(unique=True)),
             ],
         ),

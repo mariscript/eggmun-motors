@@ -60,8 +60,7 @@ def api_customer(request, pk):
         try:
             content = json.loads(request.body)
             customer = Customer.objects.get(id=pk)
-
-            props = "customer_number"
+            props = "customer_name"
             for prop in props:
                 if prop in content:
                     setattr(customer, prop, content[prop])
@@ -131,7 +130,6 @@ def api_salesperson(request, pk):
         try:
             content = json.loads(request.body)
             salesperson = SalesPerson.objects.get(id=pk)
-
             props = "employee_number"
             for prop in props:
                 if prop in content:
@@ -202,8 +200,7 @@ def api_salesrecord(request, pk):
         try:
             content = json.loads(request.body)
             salesrecord = SalesRecord.objects.get(id=pk)
-
-            props = "salesrecord_number"
+            props = ["salesperson_name", "customer_name", "automobile", "price"]
             for prop in props:
                 if prop in content:
                     setattr(salesrecord, prop, content[prop])
