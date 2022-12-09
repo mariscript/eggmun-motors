@@ -14,16 +14,13 @@ django.setup()
 from service_rest.models import AutomobileVO
 
 def get_automobiles():
-    response = requests.get('http://inventory-api:8000/api/automobiles/')
+    response = requests.get("http://inventory-api:8000/api/automobiles/")
     content = json.loads(response.content)
     for automobile in content['autos']:
         AutomobileVO.objects.update_or_create(
-            import_href=bin["href"],
-            defaults={
-            "import_href": automobile["import_href"],
-            "vin": automobile["vin"],
-            }
+            vin = automobile["vin"],
         )
+
 
 def poll():
     while True:
