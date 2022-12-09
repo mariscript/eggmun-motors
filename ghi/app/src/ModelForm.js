@@ -23,7 +23,7 @@ class ModelForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        delete data.manufacturers;
+        delete data.models;
         delete data.successCreate;
         
         const modelUrl = 'http://localhost:8100/api/models/'

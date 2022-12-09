@@ -19,10 +19,12 @@ function Nav() {
               Inventory
               </a>
               <ul className="dropdown-menu">
-                {/* <li><NavLink className="dropdown-item" to="/services">Service Appointments</NavLink></li> */}
                 <li><NavLink className="dropdown-item" to="/manufacturers">Manufacturers</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/manufacturer/new">Create Manufacturer</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/models">Create A Model</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/models">Models</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/models/new">Create A Model</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/automobiles">Automobiles</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/automobiles/new">Create An Automobile</NavLink></li>
               </ul>
             </li>
           </ul>

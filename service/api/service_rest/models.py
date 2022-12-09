@@ -4,7 +4,6 @@ from django.urls import reverse
 # Create your models here.
 class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True, null=True)
-    import_href = models.CharField(max_length=100, default=False)
 
     def __str__(self):
         return self.vin
@@ -23,16 +22,16 @@ class Technician(models.Model):
         return f"{self.name}: {self.employee_number}"
 
 class Appointment(models.Model):
-    customer_name = models.CharField(max_length=100)
+    customer_name = models.CharField(max_length=50)
     vin = models.CharField(max_length=17, unique=True, null=True)
     date_time = models.DateTimeField()
     reason = models.CharField(max_length=200)
     vip = models.BooleanField(default=False)
-    status = models.CharField(max_length=200, default=False)
+    completed = models.BooleanField(default=False)
     technician = models.ForeignKey(
         Technician,
-        related_name="technician",
-        on_delete=models.CASCADE,
+        related_name='+',
+        on_delete=models.PROTECT,
         null=True,
         blank=True,
     )

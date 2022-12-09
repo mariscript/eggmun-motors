@@ -109,25 +109,28 @@ def api_appointment(request, pk):
 
 # Appointment List
 @require_http_methods(["GET", "POST"])
-def api_appointments(request):
+def api_appointments(request, vin=None):
     if request.method == "GET":
-        appointment = Appointment.objects.all()
+        if vin is None:
+            appointments = Appointment.objects.all().order_by('-id')
+        else:
+            appointments = Appointment.objects.filter(vin=vin).order_by('-date_time')
         return JsonResponse(
-            {"appointment": appointment},
+            {"appointments": appointments},
             encoder=AppointmentEncoder,
         )
-    else:
-        content = json.loads(request.body)
+    else: # POST
         try:
-            employee_number = content["technician"]
-            technician = Technician.objects.get(employee_number=employee_number)
+            content = json.loads(request.body)
+            technician = content["technician"]
+            technician = Technician.objects.get(employee_number=technician)
             content["technician"] = technician
-        except Technician.DoesNotExist:
-            return JsonResponse(
-                {"error": "Technician does not exist"},
-                status=422,
-            )
-        try:
+            try:
+                if AutomobileVO.objects.get(vin=content["vin"]):
+                    content["vip"] = True
+            except:
+                content["vip"] = False
+                
             appointment = Appointment.objects.create(**content)
             return JsonResponse(
                 appointment,
@@ -136,9 +139,9 @@ def api_appointments(request):
             )
         except:
             response = JsonResponse(
-                {"message": "Could not create appointment"}
+                {"message": "Appointment could not be created"}
             )
-            response.status_code = 400
+            response.status_code = 404
             return response
 
 

@@ -4,10 +4,7 @@ from decimal import Decimal
 
 # Create your models here.
 class AutomobileVO(models.Model):
-<<<<<<< HEAD
-=======
     import_href = models.CharField(max_length=100, default=False)
->>>>>>> main
     vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
