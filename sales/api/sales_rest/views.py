@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from .encoders import CustomerEncoder, SalesPersonEncoder, SalesRecordEncoder
-from .models import Customer, SalesPerson, SalesRecord
+from .encoders import CustomerEncoder, SalesPersonEncoder, SalesRecordEncoder, SalesHistoryEncoder
+from .models import Customer, SalesPerson, SalesRecord, SalesHistory
 
 # Create your views here.
 @require_http_methods(["GET", "POST"])
@@ -13,6 +13,7 @@ def api_customers(request):
         return JsonResponse(
             {"customers": customers},
             encoder=CustomerEncoder,
+            safe=False,
         )
     else:
         try:
@@ -83,6 +84,7 @@ def api_salespersons(request):
         return JsonResponse(
             {"salespersons": salespersons},
             encoder=SalesPersonEncoder,
+            safe=False,
         )
     else:
         try:
@@ -153,6 +155,7 @@ def api_salesrecords(request):
         return JsonResponse(
             {"salesrecords": salesrecords},
             encoder=SalesRecordEncoder,
+            safe=False,
         )
     else:
         try:
@@ -212,5 +215,32 @@ def api_salesrecord(request, pk):
             )
         except SalesRecord.DoesNotExist:
             response = JsonResponse({"message": "Salesrecord does not exist"})
+            response.status_code = 404
+            return response
+
+
+@require_http_methods(["GET"])
+def api_saleshistories(request):
+    if request.method == "GET":
+        saleshistories = SalesHistory.objects.all()
+        return JsonResponse(
+            {"saleshistories": saleshistories},
+            encoder=SalesHistoryEncoder,
+            safe=False,
+        )
+
+
+@require_http_methods(["DELETE", "GET"])
+def api_saleshistory(request, pk):
+    if request.method == "GET":
+        try:
+            saleshistory = SalesHistory.objects.get(id=pk)
+            return JsonResponse(
+                saleshistory,
+                encoder=SalesHistoryEncoder,
+                safe=False
+            )
+        except SalesHistory.DoesNotExist:
+            response = JsonResponse({"message": "Saleshistory does not exist"})
             response.status_code = 404
             return response
