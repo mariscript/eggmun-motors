@@ -59,35 +59,43 @@ class SalesRecord(models.Model):
         return f"{self.salesperson_name}, {self.customer_name}, {self.automobile}, {self.price}"
 
 
-# class SalesHistory(models.Model):
-#     employee_number = models.ForeignKey(
-#         SalesPerson,
-#         related_name='employee_numbers',
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True,
-#     )
+class SalesHistory(models.Model):
+    employee_number = models.ForeignKey(
+        SalesPerson,
+        related_name='employee_numbers',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
-#     salesperson_name = models.ForeignKey(
-#         SalesPerson,
-#         related_name='salesperson_names'
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True,
-#     )
+    salesperson_name = models.ForeignKey(
+        SalesRecord,
+        related_name='salesperson_names',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
-#     customer_name = models.ForeignKey(
-#         Customer,
-#         related_name='customer_names',
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True,
-#     )
+    customer_name = models.ForeignKey(
+        SalesRecord,
+        related_name='customer_names',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
-#     vin = models.ForeignKey(
-#         AutomobileVO,
-#         related_name='vins',
-#         on_delete=models.CASCADE,
-#         null=True,
-#         blank=True,
-#     )
+    automobile = models.ForeignKey(
+        SalesRecord,
+        related_name='vins',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
+
+    price = models.ForeignKey(
+        SalesRecord,
+        related_name = 'prices',
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+    )
