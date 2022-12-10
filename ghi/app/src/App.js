@@ -1,8 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AutomobileForm from './AutomobileForm';
+import AutomobileList from './AutomobileList';
 import ManufacturerForm from './ManufacturerForm';
 import ManufacturerList from './ManufacturerList';
 import ModelForm from './ModelForm';
+import ModelList from "./ModelList";
 import ServiceAppointmentForm from './ServiceAppointmentForm';
+import ServiceAppointmentList from './ServiceAppointmentList';
+import ServiceHistoryList from './ServiceHistoryList';
 import TechnicianForm from './TechnicianForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
@@ -24,8 +29,13 @@ function App() {
           <Route path="/technician/new" element={<TechnicianForm />} />
           <Route path="/manufacturer/new" element={<ManufacturerForm />} />
           <Route path="/manufacturers" element={<ManufacturerList />} />
-          <Route path="/models" element={<ModelForm />} />
+          <Route path="/automobiles" element={<AutomobileList />} />
+          <Route path="/automobiles/new" element={<AutomobileForm />} />
+          <Route path="/models/new" element={<ModelForm />} />
+          <Route path="/models" element={<ModelList />} />
           <Route path="/appointments/new" element={<ServiceAppointmentForm />} />
+          <Route path="/appointments/history" element={<ServiceHistoryList />} />
+          <Route path="/appointments" element={<ServiceAppointmentList />} />
         </Routes>
       </div>
     </BrowserRouter>

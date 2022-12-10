@@ -4,6 +4,7 @@ import sys
 import time
 import json
 import requests
+import traceback
 
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
@@ -18,8 +19,11 @@ def get_automobiles():
     content = json.loads(response.content)
     for automobile in content['autos']:
         AutomobileVO.objects.update_or_create(
-            import_href=automobile["import_href"],
-            vin = automobile["vin"],
+            import_href=automobile['import_href'],
+            defaults={
+            'import_href': automobile['import_href'],
+            'vin': automobile['vin'],
+            }
         )
 
 
@@ -29,7 +33,7 @@ def poll():
         try:
             get_automobiles()
         except Exception as e:
-            print(e, file=sys.stderr)
+            traceback.print_exception(e, file=sys.stderr)
         time.sleep(60)
 
 

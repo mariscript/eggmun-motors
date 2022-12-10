@@ -22,7 +22,7 @@ class ManufacturerForm extends React.Component {
         const data = {...this.state};
         delete data.successCreate;
         
-        const techUrl = 'http://localhost:8100/api/manufacturers/'
+        const url = 'http://localhost:8100/api/manufacturers/'
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -30,7 +30,7 @@ class ManufacturerForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         };
-        const response = await fetch(techUrl, fetchConfig);
+        const response = await fetch(url, fetchConfig);
         
         if (response.ok) {
             const newManufacturer = await response.json();

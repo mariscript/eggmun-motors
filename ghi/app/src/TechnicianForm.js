@@ -77,7 +77,7 @@ class TechnicianForm extends React.Component {
                         <button className="btn btn-success">Create</button>
                         </form>
                         <div className={successClassName} id="success-message">
-                            Manufacturer has been created
+                            Technician has been created.
                         </div>
                     </div>
                 </div>

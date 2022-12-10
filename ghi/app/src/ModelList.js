@@ -1,21 +1,21 @@
 import React from 'react';
 
 
-class ManufacturerList extends React.Component {
+class ModelList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            manufacturers: [],
+            models: [],
         }
     }
     
 
     async componentDidMount() {
-        const url = 'http://localhost:8100/api/manufacturers/'
+        const url = 'http://localhost:8100/api/models/'
             const response = await fetch(url)
             if (response.ok) {
                 const data = await response.json()
-                this.setState({manufacturers: data.manufacturers})
+                this.setState({models: data.models})
             }
     }
 
@@ -26,13 +26,13 @@ class ManufacturerList extends React.Component {
 
             <div className="text-center shadow p-4 mt-4 col-md-offset-3">
 
-            <h1 className="text-center p-2 mt-2 col-md-offset-3">Manufacturers</h1>
+            <h1 className="text-center p-2 mt-2 col-md-offset-3">Models</h1>
                     <table className="table table-striped mt-4">
                         <tbody>
-                    {this.state.manufacturers.map(manufacturer => {
+                    {this.state.models.map(model => {
                         return (
-                            <tr key={manufacturer.id}>
-                            <td>{manufacturer.name}</td>
+                            <tr key={model.id}>
+                            <td>{model.name}</td>
                             </tr>
                         );
                     })}
@@ -48,5 +48,5 @@ class ManufacturerList extends React.Component {
     }
 }
 
-export default ManufacturerList;
+export default ModelList;
 
