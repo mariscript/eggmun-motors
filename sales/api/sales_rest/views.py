@@ -11,7 +11,7 @@ def api_customers(request):
     if request.method == "GET":
         customers = Customer.objects.all()
         return JsonResponse(
-            {"customers": customers},
+            {"customer object": customers},
             encoder=CustomerEncoder,
             safe=False,
         )
@@ -82,7 +82,7 @@ def api_salespersons(request):
     if request.method == "GET":
         salespersons = SalesPerson.objects.all()
         return JsonResponse(
-            {"salespersons": salespersons},
+            {"salesperson object": salespersons},
             encoder=SalesPersonEncoder,
             safe=False,
         )
@@ -153,7 +153,7 @@ def api_salesrecords(request):
     if request.method == "GET":
         salesrecords = SalesRecord.objects.all()
         return JsonResponse(
-            {"salesrecords": salesrecords},
+            {"salesrecord (list of objects)": salesrecords},
             encoder=SalesRecordEncoder,
             safe=False,
         )
@@ -217,30 +217,3 @@ def api_salesrecord(request, pk):
             response = JsonResponse({"message": "Salesrecord does not exist"})
             response.status_code = 404
             return response
-
-
-# @require_http_methods(["GET"])
-# def api_saleshistories(request):
-#     if request.method == "GET":
-#         saleshistories = SalesHistory.objects.all()
-#         return JsonResponse(
-#             {"saleshistories": saleshistories},
-#             encoder=SalesHistoryEncoder,
-#             safe=False,
-#         )
-
-
-# @require_http_methods(["DELETE", "GET"])
-# def api_saleshistory(request, pk):
-#     if request.method == "GET":
-#         try:
-#             saleshistory = SalesHistory.objects.get(id=pk)
-#             return JsonResponse(
-#                 saleshistory,
-#                 encoder=SalesHistoryEncoder,
-#                 safe=False
-#             )
-#         except SalesHistory.DoesNotExist:
-#             response = JsonResponse({"message": "Saleshistory does not exist"})
-#             response.status_code = 404
-#             return response

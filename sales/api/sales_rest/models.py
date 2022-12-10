@@ -9,7 +9,7 @@ class AutomobileVO(models.Model):
     vin = models.CharField(max_length=17, unique=True)
 
     def __str__(self):
-        return f"auto_vo object: {self.vin}"
+        return self.vin
 
 
 class Customer(models.Model):
@@ -18,7 +18,7 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=14)
 
     def __str__(self):
-        return f"customer object: {self.customer_name}"
+        return self.customer_name
 
 
 class SalesPerson(models.Model):
@@ -26,11 +26,11 @@ class SalesPerson(models.Model):
     employee_number = models.PositiveSmallIntegerField(unique=True)
 
     def __str__(self):
-        return f"salesperson object: {self.salesperson_name}, {self.employee_number}"
+        return f"{self.salesperson_name}, {self.employee_number}"
 
 
 class SalesRecord(models.Model):
-    salesperson_name = models.ForeignKey(
+    salesperson = models.ForeignKey(
         SalesPerson,
         related_name='salesperson_names',
         on_delete=models.CASCADE,
@@ -39,7 +39,7 @@ class SalesRecord(models.Model):
     )
 
 
-    customer_name = models.ForeignKey(
+    customer = models.ForeignKey(
         Customer,
         related_name='customer_names',
         on_delete=models.CASCADE,
@@ -48,7 +48,7 @@ class SalesRecord(models.Model):
     )
 
 
-    vin = models.ForeignKey(
+    automobile = models.ForeignKey(
         AutomobileVO,
         related_name='vins',
         on_delete=models.CASCADE,
@@ -59,4 +59,4 @@ class SalesRecord(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('20000.00'))
 
     def __str__(self):
-        return f"salesrecord object: {self.salesperson_name} {self.vin}"
+        return f"salesrecord object: {self.salesperson} {self.automobile}"
