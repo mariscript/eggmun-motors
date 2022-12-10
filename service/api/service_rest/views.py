@@ -109,12 +109,12 @@ def api_appointment(request, pk):
 
 # Appointment List
 @require_http_methods(["GET", "POST"])
-def api_appointments(request, vin=None):
+def api_appointments(request, vin_id=None):
     if request.method == "GET":
-        if vin is None:
+        if vin_id is None:
             appointments = Appointment.objects.all().order_by('-id')
         else:
-            appointments = Appointment.objects.filter(vin=vin).order_by('-date_time')
+            appointments = Appointment.objects.filter(vin=vin_id).order_by('-date_time')
         return JsonResponse(
             {"appointments": appointments},
             encoder=AppointmentEncoder,
@@ -143,6 +143,3 @@ def api_appointments(request, vin=None):
             )
             response.status_code = 404
             return response
-
-
-

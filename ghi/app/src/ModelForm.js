@@ -7,7 +7,6 @@ class ModelForm extends React.Component {
         this.state = {
             name: '',
             picture_url:'',
-            manufacturer: '',
             manufacturers: [],
             successCreate: false
         }
@@ -23,10 +22,10 @@ class ModelForm extends React.Component {
     async handleSubmit(event) {
         event.preventDefault();
         const data = {...this.state};
-        delete data.models;
+        delete data.manufacturers;
         delete data.successCreate;
         
-        const modelUrl = 'http://localhost:8100/api/models/'
+        const modelUrl = 'http://localhost:8100/api/models/';
         const fetchConfig = {
             method: "post",
             body: JSON.stringify(data),
@@ -81,16 +80,16 @@ class ModelForm extends React.Component {
                             <label htmlFor="name">Model Name</label>
                         </div>
                          <div className="form-floating mb-3">
-                            <input onChange={this.handleInputChange} value={this.state.picture_url} placeholder="Picture" type="text" name="picture_url" id="picture_url" className="form-control" />
+                            <input onChange={this.handleInputChange} value={this.state.picture_url} placeholder="picture_url" type="text" name="picture_url" id="picture_url" className="form-control" />
                             <label htmlFor="picture_url">Picture</label>
                         </div>
                         <div className="mb-3">
-                                <select onChange={this.handleInputChange} value={this.state.manufacturer} required name="manufacturer" id="manufacturer" className="form-select">
-                                    <option value="manufacturer">Choose A Manufacturer</option>
+                                <select onChange={this.handleInputChange} value={this.state.manufacturer} required name="manufacturer_id" id="manufacturer_id" className="form-select">
+                                    <option value="manufacturer_id">Choose A Manufacturer</option>
                                     {this.state.manufacturers.map(manufacturer => {
                                         console.log(manufacturer);
                                         return (
-                                            <option key={manufacturer.href} value={manufacturer.id}>
+                                            <option key={manufacturer.id} value={manufacturer.id}>
                                             {manufacturer.name}
                                             </option>
                                         );

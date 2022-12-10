@@ -6,6 +6,8 @@ import ManufacturerList from './ManufacturerList';
 import ModelForm from './ModelForm';
 import ModelList from "./ModelList";
 import ServiceAppointmentForm from './ServiceAppointmentForm';
+import ServiceAppointmentList from './ServiceAppointmentList';
+import ServiceHistoryList from './ServiceHistoryList';
 import TechnicianForm from './TechnicianForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
@@ -32,6 +34,8 @@ function App() {
           <Route path="/models/new" element={<ModelForm />} />
           <Route path="/models" element={<ModelList />} />
           <Route path="/appointments/new" element={<ServiceAppointmentForm />} />
+          <Route path="/appointments/history" element={<ServiceHistoryList />} />
+          <Route path="/appointments" element={<ServiceAppointmentList />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -4,7 +4,6 @@ from common.json import ModelEncoder
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "id",
         "vin",
         "import_href",
     ]

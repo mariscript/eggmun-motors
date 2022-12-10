@@ -36,8 +36,8 @@ function Nav() {
               Service
               </a>
               <ul className="dropdown-menu">
-                {/* <li><NavLink className="dropdown-item" to="/services">Service Appointments</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/services/history">Service History</NavLink></li> */}
+                <li><NavLink className="dropdown-item" to="/appointments">Appointments</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/appointments/history">Service History</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/appointments/new">Create Appointment</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/technician/new">Create Technician</NavLink></li>
               </ul>

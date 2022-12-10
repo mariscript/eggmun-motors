@@ -37,8 +37,8 @@ class AppointmentForm extends React.Component {
         };
         const response = await fetch(appointmentUrl, fetchConfig);
         if (response.ok) {
-            // eslint-disable-next-line
             const newAppointment = await response.json();
+            console.log(newAppointment)
             const cleared = {
                 customer_name: '',
                 vin: '',
@@ -74,7 +74,7 @@ class AppointmentForm extends React.Component {
             <div className="row">
                 <div className="offset-3 col-6">
                     <div className="text-center shadow p-4 mt-4">
-                        <h1>Create a service appointment</h1>
+                        <h1>Make A Service Appointment</h1>
                         <form className={formClassName} id="create-appointment-form" onSubmit={this.handleSubmit}>
                         <div className="form-floating mb-3">
                             <input 
@@ -85,10 +85,10 @@ class AppointmentForm extends React.Component {
                         </div>
                         <div className="form-floating mb-3">
                             <input 
-                            onChange={this.handleInputChange} value={this.state.appointment_time} 
+                            onChange={this.handleInputChange} value={this.state.date_time} 
                             placeholder="date_time" required type="datetime-local" name="date_time" id="date_time" 
                             className="form-control"/>
-                            <label htmlFor="date_time">Date &Time</label>
+                            <label htmlFor="date_time">Date & Time</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input 
