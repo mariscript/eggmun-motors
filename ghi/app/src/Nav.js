@@ -43,7 +43,6 @@ function Nav() {
               </ul>
             </li>
           </ul>
-        </div>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -56,16 +55,13 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/salesperson/new">Create a Sales Person</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salesrecord/new">Create a Sales Record</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salespersons/">Sales Persons</NavLink></li>
-                {/* <li><NavLink className="dropdown-item" to="/appointments/history">Service History</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/appointments/new">Create Appointment</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/technician/new">Create Technician</NavLink></li> */}
               </ul>
             </li>
           </ul>
         </div>
-
+          </div>
         </div>
-        </div>
+      </div>
     </nav>
   )
 }

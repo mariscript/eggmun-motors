@@ -32,7 +32,7 @@ class ModelList extends React.Component {
                             <tr key={model.id}>
                             <td>{model.name}</td>
                             <td>
-                            <img src={model.picture_url} className="" alt="picture of car model" width="300" height="200"></img>
+                            <img src={model.picture_url} className="" alt="car model" width="300" height="200"></img>
                             </td>
                             </tr>
                         );
