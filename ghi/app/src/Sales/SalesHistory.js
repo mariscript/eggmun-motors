@@ -1,53 +1,58 @@
-// import React from 'react'
+import React from 'react'
+import { useState, useEffect } from 'react';
 
+export default function SalesHistoryList() {
+    const [salesrecord, setSalesRecords] = useState([]);
+    const [searchTerm, setSearchTerm] = useState('')
+    console.log(salesrecord)
+    const [employee_number, setEmployeeNumber] = useState([]);
 
-// class SalesHistoryList extends React.Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             salesperson: '',
-//             salesrecords: [],
-//         }
-//     }
+    const fetchEmployeeNumber = async () => {
+        const url = 'http://localhost:8090/api/salesrecords/';
+        const result = await fetch(url);
+        const recordsJSON = await result.json();
+        setEmployeeNumber(recordsJSON.salesrecords.employee_number);
+    }
 
+    useEffect(() => {
+        fetchEmployeeNumber()
+    }, []);
 
-//     async componentDidMount() {
-//         const url = 'http://localhost:8090/api/histories'
-//         const response = await fetch(url)
-//         if (response.ok) {
-//             const data = await response.json()
-//             this.setState({saleshistories: data.saleshistories})
-//         }
-//     }
+    return (
+        <div className="row">
+            <div className="mt-4">
+                <h1>Sales History</h1>
+                <input icon="search" type="text" className="search-input" aria-label="Default example" placeholder="Search Employee Number" onChange={(event) =>
+                    {setSearchTerm(event.target.value)}}/>
+            <table className="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employee Number</th>
+                        <th>Sales Person</th>
+                        <th>Customer</th>
+                        <th>Automobile</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {sales?.filter((sale) => {
+                        if (salesrecord.employee_number.includes(employee_number)) {
+                            map((sale) => {
+                                return (
+                                    <tr key={salesrecord.id}>
+                                        <td>{salesrecord.employee_number}</td>
+                                        <td>{salesrecord.salesperson.salesperson_name}</td>
+                                        <td>{salerecord.customer.customer_name}</td>
+                                        <td>{salesrecord.automobile.vin}</td>
+                                    </tr>
+                                )
+                            })
 
-
-//     render() {
-
-//         return (
-
-//             <div className="text-center shadow p-4 mt-4 col-md-offset-3">
-
-//             <h1 className="text-center p-2 mt-2 col-md-offset-3">Sales </h1>
-//                     <table className="table table-striped mt-4">
-//                         <tbody>
-//                     {this.state.saleshistories.map(saleshistory => {
-//                         return (
-//                             <tr key={salesperson.employee_number=salesperson.employee_number}>
-//                             <td>{salesrecord.salesperson_name}</td>
-//                             <td>{salesrecord.employee_number}</td>
-//                             </tr>
-//                         )
-//                     })}
-//                         </tbody>
-
-
-
-//                         </table>
-//                     </div>
-
-
-//         )
-//     }
-// }
-
-// export default SalesHistoryList
+                        }})
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    )
+}
