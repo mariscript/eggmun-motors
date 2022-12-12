@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 class SalesPersonForm extends React.Component {
     constructor(props) {
         super(props)
@@ -30,10 +31,9 @@ class SalesPersonForm extends React.Component {
                 'Content-Type': 'application/json',
             },
         }
-        const response = await fetch(salespersonsUrl)
+        const response = await fetch(salespersonsUrl, fetchConfig)
 
         if (response.ok) {
-            const newSalesperson = await response.json()
             const cleared = {
                 salesperson_name: '',
                 employee_number: '',
@@ -56,27 +56,24 @@ class SalesPersonForm extends React.Component {
                 <div className="offset-3 col-6">
                     <div className="text-center shadow p-4 mt-4">
                         <h1>Create A Salesperson</h1>
-                        <form className={formClassName} id="create-salesperson-form"
-                        onSubmit={this.handleSubmit}>
+                        <form className={formClassName} id="create-salesperson-form" onSubmit={this.handleSubmit}>
                         <div className="form-floating mb-3">
-                            <input
-                            onChange={this.handleInputChange} value={this.state.salesperson_name}
-                            placeholder="salesperson_name" required type="text" salesperson_name="salesperson_name" id="salesperson_name"
+                            <input onChange={this.handleInputChange} value={this.state.salesperson_name}
+                            placeholder="salesperson_name" required type="text" name="salesperson_name" id="salesperson_name"
                             className="form-control"/>
-                            <label htmlFor="name">Salesperson Name</label>
+                            <label htmlFor="salesperson_name">Salesperson Name</label>
                         </div>
                         <div className="form-floating mb-3">
-                            <input
-                            onChange={this.handleInputChange} value={this.state.employee_number}
+                            <input onChange={this.handleInputChange} value={this.state.employee_number}
                             placeholder="employee_number" required type="number" max="32767"
                             name="employee_number" id="employee_number"
                             className="form-control"/>
                             <label htmlFor="employee_number">Employee Number</label>
                         </div>
-                        <button className="btn btn-success">Create</button>
+                            <button className="btn btn-success">Create</button>
                         </form>
                         <div className={successClassName} id="success-message">
-                            Manufacturer has been created
+                            Salesperson has been created
                         </div>
                     </div>
                 </div>
@@ -84,3 +81,5 @@ class SalesPersonForm extends React.Component {
         )
     }
 }
+
+export default SalesPersonForm

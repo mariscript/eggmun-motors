@@ -11,16 +11,16 @@ def api_customers(request):
     if request.method == "GET":
         customers = Customer.objects.all()
         return JsonResponse(
-            {"customer object": customers},
+            {"customers": customers},
             encoder=CustomerEncoder,
             safe=False,
         )
     else:
         try:
             content = json.loads(request.body)
-            customer = Customer.objects.create(**content)
+            customers = Customer.objects.create(**content)
             return JsonResponse(
-                customer,
+                {"customer": customers},
                 encoder=CustomerEncoder,
                 safe=False,
             )
@@ -38,7 +38,7 @@ def api_customer(request, pk):
         try:
             customer = Customer.objects.get(id=pk)
             return JsonResponse(
-                customer,
+                {"customer": customer},
                 encoder=CustomerEncoder,
                 safe=False
             )
@@ -82,7 +82,7 @@ def api_salespersons(request):
     if request.method == "GET":
         salespersons = SalesPerson.objects.all()
         return JsonResponse(
-            {"salesperson object": salespersons},
+            {"salespersons": salespersons},
             encoder=SalesPersonEncoder,
             safe=False,
         )
@@ -153,7 +153,7 @@ def api_salesrecords(request):
     if request.method == "GET":
         salesrecords = SalesRecord.objects.all()
         return JsonResponse(
-            {"salesrecord (list of objects)": salesrecords},
+            {"salesrecords": salesrecords},
             encoder=SalesRecordEncoder,
             safe=False,
         )

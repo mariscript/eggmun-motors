@@ -6,8 +6,8 @@ function Nav() {
       <div className="container-fluid">
         <NavLink className="navbar-brand" to="/"><img src="https://cdn.dribbble.com/users/2245289/screenshots/6835230/dribbble.gif" width="100" height="60" /> </NavLink>
         <NavLink className="navbar-brand" to="/">EggMun mOtOrs</NavLink>
-    {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse" 
-        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+    {/* <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button> */}
@@ -44,6 +44,26 @@ function Nav() {
             </li>
           </ul>
         </div>
+
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item dropdown">
+              <a className="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sales
+              </a>
+              <ul className="dropdown-menu">
+                <li><NavLink className="dropdown-item" to="/customer/new">Create a Customer</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesperson/new">Create a Sales Person</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salesrecord/new">Create a Sales Record</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/salespersons/">Sales Persons</NavLink></li>
+                {/* <li><NavLink className="dropdown-item" to="/appointments/history">Service History</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/appointments/new">Create Appointment</NavLink></li>
+                <li><NavLink className="dropdown-item" to="/technician/new">Create Technician</NavLink></li> */}
+              </ul>
+            </li>
+          </ul>
+        </div>
+
         </div>
         </div>
     </nav>
