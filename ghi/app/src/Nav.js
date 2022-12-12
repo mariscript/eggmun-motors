@@ -56,9 +56,7 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/salesperson/new">Create a Sales Person</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salesrecord/new">Create a Sales Record</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salespersons/">Sales Persons</NavLink></li>
-                {/* <li><NavLink className="dropdown-item" to="/appointments/history">Service History</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/appointments/new">Create Appointment</NavLink></li>
-                <li><NavLink className="dropdown-item" to="/technician/new">Create Technician</NavLink></li> */}
+                <li><NavLink className="dropdown-item" to="/salesrecords/">Sales Records</NavLink></li>
               </ul>
             </li>
           </ul>

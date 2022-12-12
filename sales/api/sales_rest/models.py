@@ -35,13 +35,13 @@ class SalesPerson(models.Model):
         return reverse('api_salesperson', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f"{self.salesperson_name}, {self.employee_number}"
+        return f"salesperson: {self.salesperson_name}, employee number: {self.employee_number}"
 
 
 class SalesRecord(models.Model):
     salesperson = models.ForeignKey(
         SalesPerson,
-        related_name='salesperson_names',
+        related_name='+',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -50,7 +50,7 @@ class SalesRecord(models.Model):
 
     customer = models.ForeignKey(
         Customer,
-        related_name='customer_names',
+        related_name='customers',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -59,7 +59,7 @@ class SalesRecord(models.Model):
 
     automobile = models.ForeignKey(
         AutomobileVO,
-        related_name='vins',
+        related_name='automobiles',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
@@ -71,4 +71,4 @@ class SalesRecord(models.Model):
         return reverse('api_salesrecord', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f"salesrecord object: {self.salesperson} {self.automobile}"
+        return f"sales: {self.salesperson} customer: {self.customer} car: {self.automobile}"
