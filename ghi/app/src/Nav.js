@@ -55,10 +55,7 @@ function Nav() {
                 <li><NavLink className="dropdown-item" to="/salesperson/new">Create a Sales Person</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salesrecord/new">Create a Sales Record</NavLink></li>
                 <li><NavLink className="dropdown-item" to="/salespersons/">Sales Persons</NavLink></li>
-<<<<<<< HEAD
-=======
                 <li><NavLink className="dropdown-item" to="/salesrecords/">Sales Records</NavLink></li>
->>>>>>> main
               </ul>
             </li>
           </ul>
