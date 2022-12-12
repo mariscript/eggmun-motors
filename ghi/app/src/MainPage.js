@@ -1,3 +1,4 @@
+
 function MainPage() {
   return (
     <div className="px-4 py-5 my-5 text-center">
@@ -6,8 +7,10 @@ function MainPage() {
         <p className="lead mb-4">
           Automobile dealership management!
         </p>
+        <img src="http://www.clipartbest.com/cliparts/nTX/68B/nTX68B4ac.gif" alt="Rotating older model vehicle" />
       </div>
     </div>
+
   );
 }
 
