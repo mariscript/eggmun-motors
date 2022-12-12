@@ -35,7 +35,7 @@ class SalesPerson(models.Model):
         return reverse('api_salesperson', kwargs={'pk': self.id})
 
     def __str__(self):
-        return f"salesperson: {self.salesperson_name}, employee number: {self.employee_number}"
+        return f"{self.salesperson_name} #: {self.employee_number}"
 
 
 class SalesRecord(models.Model):
