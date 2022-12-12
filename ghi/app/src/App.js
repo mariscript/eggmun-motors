@@ -11,9 +11,10 @@ import ServiceHistoryList from './Service/ServiceHistoryList';
 import TechnicianForm from './Service/TechnicianForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
-// import CustomerForm from './CustomerForm';
-// import SalesPersonForm from './SalesPersonForm';
-// import SalesRecordForm from './SalesRecordForm';
+import CustomerForm from './CustomerForm';
+import SalesPersonForm from './SalesPersonForm';
+import SalesRecordForm from './SalesRecordForm';
+import SalesPersonList from './SalesPersonList';
 // import SalesRecordList from './SalesRecordList';
 // import SalesPersonSalesList from './SalesPersonSalesHistory';
 
@@ -36,6 +37,10 @@ function App() {
           <Route path="/appointments/history" element={<ServiceHistoryList />} />
           <Route path="/appointments" element={<ServiceAppointmentList />} />
           <Route path="/technician/new" element={<TechnicianForm />} />
+          <Route path="/customer/new" element={<CustomerForm />} />
+          <Route path="/salesperson/new" element={<SalesPersonForm />} />
+          <Route path="/salesrecord/new" element={<SalesRecordForm />} />
+          <Route path="/salespersons/" element={<SalesPersonList />} />
         </Routes>
       </div>
     </BrowserRouter>
@@ -43,4 +48,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,5 +1,5 @@
 from common.json import ModelEncoder
-from .models import AutomobileVO, Customer, SalesPerson, SalesRecord, SalesHistory
+from .models import AutomobileVO, Customer, SalesPerson, SalesRecord
 import json
 
 class AutomobileVOEncoder(ModelEncoder):
@@ -29,60 +29,32 @@ class SalesPersonEncoder(ModelEncoder):
     ]
 
 
-
 class SalesRecordEncoder(ModelEncoder):
     model = SalesRecord
     properties = [
         "id",
         "price",
-        "customer_name",
-        "salesperson_name",
+        "customer",
+        "salesperson",
         "automobile",
     ]
 
+    encoders = {
+        "customer": CustomerEncoder(),
+        "salesperson": SalesPersonEncoder(),
+        "automobile": AutomobileVOEncoder(),
+    }
+
 
     def get_extra_data(self, o):
-        customer_name = json.dumps(o.customer_name, default=str)
-        customer_name = json.loads(customer_name)
-        salesperson_name = json.dumps(o.salesperson_name, default=str)
-        salesperson_name = json.loads(salesperson_name)
+        customer = json.dumps(o.customer, default=str)
+        customer = json.loads(customer)
+        salesperson = json.dumps(o.salesperson, default=str)
+        salesperson = json.loads(salesperson)
         automobile = json.dumps(o.automobile, default=str)
         automobile = json.loads(automobile)
         return {
-        "customer_name": customer_name,
-        "salesperson_name": salesperson_name,
+        "customer": customer,
+        "salesperson": salesperson,
         "automobile": automobile
-        }
-
-        # return {
-        #     "customer_name": json.dumps(o.customer_name, default=str),
-        #     "salesperson_name": json.dumps(o.salesperson_name, default=str),
-        #     "automobile": json.dumps(o.automobile, default=str),
-        # }
-
-class SalesHistoryEncoder(ModelEncoder):
-    model = SalesHistory
-    properties = [
-        "id",
-        "employee_number",
-        "salesperson_name",
-        "customer_name",
-        "automobile",
-        "price",
-    ]
-
-    def get_extra_data(self, o):
-        salesperson_name = json.dumps(o.salesperson_name, default=str)
-        salesperson_name = json.loads(salesperson_name)
-        customer_name = json.dumps(o.customer_name, default=str)
-        customer_name = json.loads(customer_name)
-        automobile = json.dumps(o.automobile, default=str)
-        automobile = json.loads(automobile)
-        price = json.dumps(price, default=str)
-        price = json.loads(price)
-        return {
-            "salesperson_name": salesperson_name,
-            "customer_name": customer_name,
-            "automobile": automobile,
-            "price": price,
         }
