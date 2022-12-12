@@ -11,12 +11,12 @@ import ServiceHistoryList from './Service/ServiceHistoryList';
 import TechnicianForm from './Service/TechnicianForm';
 import MainPage from './MainPage';
 import Nav from './Nav';
-import CustomerForm from './CustomerForm';
-import SalesPersonForm from './SalesPersonForm';
-import SalesRecordForm from './SalesRecordForm';
-import SalesPersonList from './SalesPersonList';
-import SalesRecordList from './SalesRecordList';
-// import SalesPersonSalesList from './SalesPersonSalesHistory';
+import CustomerForm from './Sales/CustomerForm';
+import SalesPersonForm from './Sales/SalesPersonForm';
+import SalesRecordForm from './Sales/SalesRecordForm';
+import SalesPersonList from './Sales/SalesPersonList';
+import SalesRecordList from './Sales/SalesRecordList';
+import SalesHistoryList from './Sales/SalesHistory';
 
 import './index.css';
 
@@ -42,6 +42,7 @@ function App() {
           <Route path="/salesrecord/new" element={<SalesRecordForm />} />
           <Route path="/salespersons/" element={<SalesPersonList />} />
           <Route path="/salesrecords/" element={<SalesRecordList />} />
+          {/* <Route path="/saleshistory/" element={<SalesHistoryList />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

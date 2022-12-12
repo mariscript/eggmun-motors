@@ -102,7 +102,19 @@ class SalesRecordForm extends React.Component {
                         <h1>Create A Sales Record</h1>
                         <form className={formClassName} id="create-salesrecord-form"
                         onSubmit={this.handleSubmit}>
-                        <div className="mb-3">
+                        <div className="form-floating mb-3">
+                            <input onChange={this.handleInputChange} value={this.state.customer}
+                            placeholder="customer" required type="text" name="customer" id="customer"
+                            className="form-control"/>
+                            <label htmlFor="customer">Customer</label>
+                        </div>
+                        <div className="form-floating mb-3">
+                            <input onChange={this.handleInputChange} value={this.state.salesperson}
+                            placeholder="salesperson" required type="text" name="salesperson" id="salesperson"
+                            className="form-control"/>
+                            <label htmlFor="salesperson">Salesperson</label>
+                        </div>
+                        {/* <div className="mb-3">
                             <select
                             onChange={this.handleInputChange} value={this.state.customer}
                             required name="customer" id="customer" className="form-select">
@@ -110,7 +122,7 @@ class SalesRecordForm extends React.Component {
                             {this.state.customers.map(customer => {
                                     return (
                                         <option key={customer.customer_name} value={customer.customer_name}>
-                                            {customer.name}
+                                            {customer.customer_name}
                                         </option>
                                     )
                                 })}
@@ -124,32 +136,35 @@ class SalesRecordForm extends React.Component {
                             {this.state.salespersons.map(salesperson => {
                                     return (
                                         <option key={salesperson.salesperson_name} value={salesperson.salesperson_name}>
-                                            {salesperson.name}
-                                        </option>
-                                    )
-                                })}
-                            </select>
-                        </div>
-                        {/* <div className="mb-3">
-                            <select
-                            onChange={this.handleInputChange} value={this.state.automobile}
-                            required name="automobile" id="automobile" className="form-select">
-                            <option value="">Choose A automobile</option>
-                            {this.state.automobiles.map(automobile => {
-                                    return (
-                                        <option key={automobile.automobile_name} value={automobile.automobile_name}>
-                                            {automobile.name}
+                                            {salesperson.salesperson_name}
                                         </option>
                                     )
                                 })}
                             </select>
                         </div> */}
-                        <div className="form-floating mb-3">
+
+                        <div className="mb-3">
+                            <select
+                            onChange={this.handleInputChange} value={this.state.automobile}
+                            required name="automobile" id="automobile" className="form-select">
+                            <option value="">Choose An Automobile</option>
+                            {this.state.automobiles.map(automobile => {
+                                    return (
+                                        <option key={automobile.id} value={automobile.id}>
+                                            {automobile.id}
+                                        </option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+
+                        {/* <div className="form-floating mb-3">
                             <input onChange={this.handleInputChange} value={this.state.automobile}
                             placeholder="automobile" required type="text" name="automobile" id="automobile"
                             className="form-control"/>
                             <label htmlFor="automobile">Automobile</label>
-                        </div>
+                        </div> */}
+
                         <div className="form-floating mb-3">
                             <input onChange={this.handleInputChange} value={this.state.price}
                             placeholder="price" required type="number" name="price" id="price"
