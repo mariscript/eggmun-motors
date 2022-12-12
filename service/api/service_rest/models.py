@@ -32,7 +32,7 @@ class Appointment(models.Model):
     technician = models.ForeignKey(
         Technician,
         related_name='+',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
