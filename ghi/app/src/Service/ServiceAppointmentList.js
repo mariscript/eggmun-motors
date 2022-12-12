@@ -2,9 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 
 
+
 export default function AppointmentList() {
 
     const [appointments, setAppointments] = useState([]);
+
 
     const fetchAppointments = async () => {
         const url = 'http://localhost:8080/api/appointments/';
@@ -18,7 +20,9 @@ export default function AppointmentList() {
         fetchAppointments()
     }, []);
 
+
     async function deleteAppointment(id) {
+        alert('This appointment is now cancelled.')
         const url = `http://localhost:8080/api/appointments/${id}/`;
         const result = await fetch(url, { method: 'DELETE' });
         if (result.ok) {
@@ -28,7 +32,7 @@ export default function AppointmentList() {
 
     async function completeAppointment(id) {
         const data = { completed: "True" }
-        const url = `http://localhost:8080/api/appointments/`;
+        const url = `http://localhost:8080/api/appointments/history`;
         const fetchConfig = {
             method: "PUT",
             body: JSON.stringify(data),
@@ -77,14 +81,16 @@ export default function AppointmentList() {
                                 <td>{appointment.technician.name}</td>
                                 <td>{appointment.reason}</td>
                                 <td>{appointment.vip.toString()}</td>
+
                                 <td>
                                     <button className="btn btn-danger" onClick={() => deleteAppointment(appointment.id)} type="button">Cancel</button>
-                                    <button className="btn btn-success" onClick={() => completeAppointment()} type="submit">Finished</button>
+                                    <button className="btn btn-success" onClick={() => completeAppointment(appointment.id)} type="submit">Complete</button>
                                 </td>
+
                             </tr>
                         );
                     })}
-                </tbody>
+            </tbody>
             </table>
         </div>
     )

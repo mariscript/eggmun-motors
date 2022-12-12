@@ -7,52 +7,37 @@ import json
 
 
 # Create your views here.
+
 # Technician Detail
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_technician(request, pk):
     if request.method == "GET": 
-        technician = Technician.objects.get(id=pk)
         try:
+            technician = Technician.objects.get(id=pk)
             return JsonResponse(
                 {'technician': technician},
                 encoder=TechnicianEncoder,
                 safe=False
             )
         except Technician.DoesNotExist:
-            response = JsonResponse({"message": "Tech does not exist"})
-            response.status_code = 404
-            return response
-    elif request.method == "DELETE":
-        try:
-            technician = Technician.objects.get(id=pk)
-            technician.delete()
-            return JsonResponse(
-                technician,
-                encoder=technician,
-                safe=False,
-                )
-        except Technician.DoesNotExist:
-            return JsonResponse({"message": "Tech does not exist"})
-    else: #PUT
-        try:
-            content = json.loads(request.body)
-            technician = Technician.objects.filter(id=pk)
-            props = ["name"]
-            for prop in props:
-                if prop in content:
-                    setattr(technician, prop, content[prop])
-            return JsonResponse(
-                technician,
-                encoder=TechnicianEncoder,
-                safe=False
+           response = JsonResponse(
+                {"message": "Tech does not exist"}
             )
-        except Technician.DoesNotExist:
-            response = JsonResponse({"message": "Tech does not exist"})
-            response.status_code = 404
-            return response
-
-
-
+           response.status_code = 404
+           return response
+    elif request.method == "DELETE":
+        count, _ = Technician.objects.filter(id=pk).delete()
+        return JsonResponse(
+                {"message": "Tech has been deleted"}
+            )
+    else:
+        content = json.loads(request.body)
+        technician = Technician.objects.filter(id=pk).update(**content)
+        return JsonResponse(
+            {"message": "Tech has been updated"},
+            encoder=TechnicianEncoder,
+            safe=False
+        )
 
 
 # Technician List
@@ -83,25 +68,35 @@ def api_technicians(request):
 
 
 # Appointment Detail
-@require_http_methods(["GET", "DELETE"])
+@require_http_methods(["DELETE", "GET", "PUT"])
 def api_appointment(request, pk):
-    try:
-        appointment = Appointment.objects.get(id=pk)
-    except Appointment.DoesNotExist:
-        response = JsonResponse({"message": "Appointment does not exist"})
-        response.status_code = 404
-        return response
-    
     if request.method == "GET":
+        appointment = Appointment.objects.get(id=pk)
         return JsonResponse(
-            appointment,
+            {'appointment': appointment},
             encoder=AppointmentEncoder,
             safe=False
         )
-    else: # DELETE
-        appointment.delete()
+    elif request.method == "DELETE":
+        count, _ = Appointment.objects.filter(id=pk).delete()
+        return JsonResponse({"message": "Appointment has been deleted."})
+    else:
+        content = json.loads(request.body)
+        try:
+            if "technician" in content:
+                technician = Technician.objects.get(id=content["technician"])
+                content["technician"] = technician
+            elif "vin" in content:
+                vin = AutomobileVO.objects.get(vin=content["vin"])
+                content["vin"] = vin
+        except AutomobileVO.DoesNotExist:
+                return JsonResponse(
+                    {"message": "Vin Does Not Exist"},
+                    status= 400,
+                )
+        appointment = Appointment.objects.filter(id=pk).update(**content)
         return JsonResponse(
-            appointment,
+            {"message": "Appointment has been updated."},
             encoder=AppointmentEncoder,
             safe=False
         )

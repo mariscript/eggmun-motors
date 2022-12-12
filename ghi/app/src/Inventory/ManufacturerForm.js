@@ -37,7 +37,6 @@ class ManufacturerForm extends React.Component {
             console.log(newManufacturer)
             const cleared = {
                 name: '',
-                employee_number: '',
                 successCreate: true,
             };
             this.setState(cleared);

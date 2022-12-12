@@ -23,27 +23,23 @@ class ModelList extends React.Component {
     render() {
  
         return (
-
             <div className="text-center shadow p-4 mt-4 col-md-offset-3">
-
-            <h1 className="text-center p-2 mt-2 col-md-offset-3">Models</h1>
+                <h1 className="text-center p-2 mt-2 col-md-offset-3">Models</h1>
                     <table className="table table-striped mt-4">
                         <tbody>
                     {this.state.models.map(model => {
                         return (
                             <tr key={model.id}>
                             <td>{model.name}</td>
+                            <td>
+                            <img src={model.picture_url} className="" alt="picture of car model" width="300" height="200"></img>
+                            </td>
                             </tr>
                         );
                     })}
                         </tbody>
-
-
-                        
-                        </table>
-                    </div>
-
-
+                    </table>
+                </div>
         );
     }
 }
