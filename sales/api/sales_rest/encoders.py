@@ -5,7 +5,6 @@ import json
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
     properties = [
-        "import_href",
         "vin",
     ]
 
@@ -41,8 +40,8 @@ class SalesRecordEncoder(ModelEncoder):
 
     encoders = {
         "customer": CustomerEncoder(),
-        # "salesperson": SalesPersonEncoder(),
-        # "automobile": AutomobileVOEncoder(),
+        "salesperson": SalesPersonEncoder(),
+        "automobile": AutomobileVOEncoder(),
     }
 
 

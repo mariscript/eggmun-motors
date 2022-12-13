@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
 from .encoders import CustomerEncoder, SalesPersonEncoder, SalesRecordEncoder
-from .models import Customer, SalesPerson, SalesRecord
+from .models import Customer, SalesPerson, SalesRecord, AutomobileVO
 
 # Create your views here.
 @require_http_methods(["GET", "POST"])
@@ -149,29 +149,39 @@ def api_salesperson(request, pk):
 
 
 @require_http_methods(["GET", "POST"])
-def api_salesrecords(request):
-    if request.method == "GET":
-        salesrecords = SalesRecord.objects.all()
-        return JsonResponse(
-            {"salesrecords": salesrecords},
-            encoder=SalesRecordEncoder,
-            safe=False,
-        )
-    else:
-        try:
-            content = json.loads(request.body)
-            salesrecord = SalesRecord.objects.create(**content)
+def api_salesrecords(request, employee_number=None):
+   if request.method == "GET":
+        if employee_number is None:
+            sales = SalesRecord.objects.all()
             return JsonResponse(
-                salesrecord,
-                encoder=SalesRecordEncoder,
-                safe=False,
-            )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create the salesrecord"}
-            )
-            response.status_code=400
-            return response
+            {"sales": sales},
+            encoder=SalesRecordEncoder
+        )
+   else:
+        content = json.loads(request.body)
+        vin = content["automobile"]
+        automobile = AutomobileVO.objects.get(vin=vin)
+        content["automobile"] = automobile
+
+        salesperson = SalesPerson.objects.get(employee_number=content["salesperson"])
+        content["salesperson"] = salesperson
+
+        customer = Customer.objects.get(id=content["customer"])
+        content["customer"] = customer
+        # try:
+        #     vin = AutomobileVO.objects.get(vin=automobile)
+        #     if SalesRecord.objects.get(automobile=vin):
+        #         return JsonResponse(
+        #         {"message": "Automobile already sold."},
+        #         status=404
+        #     )
+        # except:
+   sale = SalesRecord.objects.create(**content)
+   return JsonResponse(
+        sale,
+        encoder=SalesRecordEncoder,
+        safe=False,
+    )
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])
