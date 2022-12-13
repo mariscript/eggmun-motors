@@ -47,15 +47,13 @@ class SalesRecord(models.Model):
         blank=True,
     )
 
-
     customer = models.ForeignKey(
         Customer,
-        related_name='customers',
+        related_name='+',
         on_delete=models.CASCADE,
         null=True,
         blank=True,
     )
-
 
     automobile = models.ForeignKey(
         AutomobileVO,
@@ -65,7 +63,7 @@ class SalesRecord(models.Model):
         blank=True,
     )
 
-    price = models.DecimalField(max_digits=8, decimal_places=2, default=Decimal('20000.00'))
+    price = models.PositiveIntegerField()
 
     def get_api_url(self):
         return reverse('api_salesrecord', kwargs={'pk': self.id})

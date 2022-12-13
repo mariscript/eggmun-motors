@@ -100,7 +100,7 @@ def api_appointment(request, pk):
             encoder=AppointmentEncoder,
             safe=False
         )
-
+        
 
 # Appointment List
 @require_http_methods(["GET", "POST"])

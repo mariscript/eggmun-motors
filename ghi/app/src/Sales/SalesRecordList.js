@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react";
 // import { useState, useEffect } from 'react'
-
-
 
 // export default function SalesRecordList() {
 
 //     const [salesrecords, setSalesRecords] = useState([])
-
 
 //     const fetchSalesRecords = async () => {
 //         const url = 'http://localhost:8090/api/salesrecords/'
@@ -25,7 +22,6 @@ import React from 'react'
 //     useEffect(() => {
 //         fetchVin()
 //     }, [])
-
 
 //     async function deleteSalesRecord(id) {
 //         alert('Salesrecord deleted.')
@@ -51,7 +47,6 @@ import React from 'react'
 //         if (result.ok) {
 //             setSalesRecords(salesrecords.filter((salesrecord) => salesrecord.id !== id));
 //         }
-
 
 //     }
 
@@ -93,73 +88,52 @@ import React from 'react'
 //     )
 // }
 
-
-
-
-
-
-
-
-
-
-
-
 class SalesRecordList extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            salesrecords: [],
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      salesrecords: [],
+    };
+  }
+
+  async componentDidMount() {
+    const url = "http://localhost:8090/api/salesrecords";
+    const response = await fetch(url);
+    if (response.ok) {
+      const data = await response.json();
+      this.setState({ sales: data.sales });
     }
+  }
 
-
-    async componentDidMount() {
-        const url = 'http://localhost:8090/api/salesrecords'
-        const response = await fetch(url)
-        if (response.ok) {
-            const data = await response.json()
-            this.setState({salesrecords: data.salesrecords})
-        }
-    }
-
-
-    render() {
-
-        return (
-
-            <div className="text-center shadow p-4 mt-4 col-md-offset-3">
-
-            <h1 className="text-center p-2 mt-2 col-md-offset-3">Sales Records</h1>
-                    <table className="table table-striped mt-4">
-                        <thead>
-                        <tr>
-                            <th>Sales Person</th>
-                            <th>Customer</th>
-                            <th>Automobile</th>
-                            <th>Price</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                    {this.state.salesrecords.map(salesrecord => {
-                        return (
-                            <tr key={salesrecord.id}>
-                            <td>{salesrecord.salesperson}</td>
-                            <td>{salesrecord.customer}</td>
-                            <td>{salesrecord.automobile}</td>
-                            <td>{salesrecord.price}</td>
-                            </tr>
-                        )
-                    })}
-                        </tbody>
-
-
-
-                        </table>
-                    </div>
-
-
-        )
-    }
+  render() {
+    return (
+      <div className="text-center shadow p-4 mt-4 col-md-offset-3">
+        <h1 className="text-center p-2 mt-2 col-md-offset-3">Sales Records</h1>
+        <table className="table table-striped mt-4">
+          <thead>
+            <tr>
+              <th>Sales Person</th>
+              <th>Customer</th>
+              <th>Automobile</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {this.state.sales?.map((salesrecord) => {
+              return (
+                <tr key={salesrecord.id}>
+                  <td>{salesrecord.salesperson}</td>
+                  <td>{salesrecord.customer}</td>
+                  <td>{salesrecord.automobile}</td>
+                  <td>{salesrecord.price}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 }
 
-export default SalesRecordList
+export default SalesRecordList;
