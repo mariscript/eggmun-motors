@@ -2,33 +2,30 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 
 export default function SalesHistoryList() {
-    const [salesrecords, setSalesRecords] = useState([])
+    const [sales, setSales] = useState([])
     const [searchTerm, setSearchTerm] = useState('')
-    console.log(salesrecords)
     const [employee_number, setEmployeeNumber] = useState([])
 
-    const fetchSalesRecords = async () => {
+    const fetchSales = async () => {
         const url = 'http://localhost:8090/api/salesrecords/'
         const result = await fetch(url)
         const recordsJSON = await result.json()
-        setSalesRecords(recordsJSON.salesrecords)
+        setSales(recordsJSON.sales)
     }
 
     const fetchEmployeeNumber = async () => {
-        const url = 'http://localhost:8090/api/salespersons/'
+        const url = 'http://localhost:8090/api/sales/'
         const result = await fetch(url)
         const recordsJSON = await result.json()
         setEmployeeNumber(recordsJSON.salespersons.employee_number)
     }
 
-
-
-  useEffect(() => {
-    fetchEmployeeNumber()
-  }, [])
+    useEffect(() => {
+        fetchEmployeeNumber()
+    }, []);
 
     useEffect(() => {
-        fetchSalesRecords()
+        fetchSales()
     }, [])
 
 
@@ -47,7 +44,7 @@ export default function SalesHistoryList() {
                          </tr>
                      </thead>
                      <tbody>
-                         {salesrecords?.filter((salesrecord) => {
+                         {sales?.filter((salesrecord) => {
                             if (salesrecord.salesperson.includes(employee_number)) {
                                 return salesrecord;
                             } else if (salesrecord.salesperson.includes(searchTerm)) {
