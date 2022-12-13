@@ -43,14 +43,18 @@ export default function SalesHistoryList() {
             </tr>
           </thead>
           <tbody>
-            {sales?.filter((sale) => {
-              if (salesrecord.employee_number.includes(employee_number)) {
-                map((sale) => {
+            {salesrecord?.filter((salesrecord) => {
+              if (
+                salesrecord.salesperson.employee_number.includes(
+                  employee_number
+                )
+              ) {
+                salesrecord?.map((salesrecord) => {
                   return (
                     <tr key={salesrecord.id}>
                       <td>{salesrecord.employee_number}</td>
                       <td>{salesrecord.salesperson.salesperson_name}</td>
-                      <td>{salerecord.customer.customer_name}</td>
+                      <td>{salesrecord.customer.customer_name}</td>
                       <td>{salesrecord.automobile.vin}</td>
                     </tr>
                   );

@@ -27,24 +27,6 @@ export default function AppointmentList() {
     }
   }
 
-  // const completed = async (event) => {
-  //     const value = event.currentTarget.id;
-  //     const completedUrl = `http://localhost:8080/api/appointments/${value}`;
-  //     const fetchConfig = {
-  //         method: "PUT",
-  //         // body: JSON.stringify({ completed: true }),
-  //         headers: {
-  //             'Content-Type': 'application/json',
-  //         },
-  //     };
-  //     const result = await fetch(completedUrl, fetchConfig);
-  //     if (result.ok) {
-  //         console.log("Success")
-  //     }
-  //     else {
-  //         console.log("Failed")
-  //     }
-
   async function completeAppointment(id) {
     const completedUrl = `http://localhost:8080/api/appointments/${id}`;
     const fetchConfig = {
