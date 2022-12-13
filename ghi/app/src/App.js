@@ -42,7 +42,7 @@ function App() {
           <Route path="/salesrecord/new" element={<SalesRecordForm />} />
           <Route path="/salespersons/" element={<SalesPersonList />} />
           <Route path="/salesrecords/" element={<SalesRecordList />} />
-          {/* <Route path="/saleshistory/" element={<SalesHistoryList />} /> */}
+          <Route path="/saleshistory/" element={<SalesHistoryList />} />
         </Routes>
       </div>
     </BrowserRouter>
