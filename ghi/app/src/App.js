@@ -48,10 +48,7 @@ function App() {
           <Route path="/salespersons/" element={<SalesPersonList />} />
           <Route path="/salesrecords/" element={<SalesRecordList />} />
           <Route path="/saleshistory/" element={<SalesHistoryList />} />
-<<<<<<< HEAD
-=======
           <Route path="/salesperson/id" element={<SalesPersonForm />} />
->>>>>>> main
         </Routes>
       </div>
     </BrowserRouter>
