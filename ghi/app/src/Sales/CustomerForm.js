@@ -76,12 +76,12 @@ class CustomerForm extends React.Component {
                   className="form-control"
                 />
               </div>
+              <label htmlFor="address">Address</label>
               <div className="form-floating mb-3">
-                <label htmlFor="address">Address</label>
                 <input
                   onChange={this.handleInputChange}
                   value={this.state.address}
-                  placeholder="address"
+                  placeholder=""
                   required_type="text"
                   name="address"
                   id="address"

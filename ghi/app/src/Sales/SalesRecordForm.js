@@ -1,87 +1,87 @@
-import React from "react"
+import React from "react";
 
 class SalesRecordForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      automobile: '',
+      automobile: "",
       automobiles: [],
-      salesperson: '',
+      salesperson: "",
       salespersons: [],
-      customer: '',
+      customer: "",
       customers: [],
-      price: '',
+      price: "",
       vins: [],
       successCreate: false,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleInputChange(event) {
-    const value = event.target.value
-    this.setState({ [event.target.id]: value })
+    const value = event.target.value;
+    this.setState({ [event.target.id]: value });
   }
 
   async handleSubmit(event) {
-    event.preventDefault()
-    const data = { ...this.state }
-    delete data.automobiles
-    delete data.customers
-    delete data.salespersons
-    delete data.vins
-    delete data.successCreate
+    event.preventDefault();
+    const data = { ...this.state };
+    delete data.automobiles;
+    delete data.customers;
+    delete data.salespersons;
+    delete data.vins;
+    delete data.successCreate;
 
-    const SalesRecordUrl = "http://localhost:8090/api/salesrecords/"
+    const SalesRecordUrl = "http://localhost:8090/api/salesrecords/";
     const fetchConfig = {
-      method: 'post',
+      method: "post",
       body: JSON.stringify(data),
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
-    }
-    const response = await fetch(SalesRecordUrl, fetchConfig)
+    };
+    const response = await fetch(SalesRecordUrl, fetchConfig);
     if (response.ok) {
-      const newSalesRecord = await response.json()
-      console.log(newSalesRecord)
+      const newSalesRecord = await response.json();
+      console.log(newSalesRecord);
       const cleared = {
-        automobile: '',
-        salesperson: '',
-        customer: '',
-        price: '',
+        automobile: "",
+        salesperson: "",
+        customer: "",
+        price: "",
         successCreate: true,
-      }
-      this.setState(cleared)
+      };
+      this.setState(cleared);
     }
   }
 
   async componentDidMount() {
-    const autoUrl = 'http://localhost:8100/api/automobiles/'
-    const salesPersonUrl = 'http://localhost:8090/api/salespersons/'
-    const customerUrl = 'http://localhost:8090/api/customers/'
+    const autoUrl = "http://localhost:8100/api/automobiles/";
+    const salesPersonUrl = "http://localhost:8090/api/salespersons/";
+    const customerUrl = "http://localhost:8090/api/customers/";
 
-    const salesPersonResponse = await fetch(salesPersonUrl)
-    const customerResponse = await fetch(customerUrl)
-    const autoResponse = await fetch(autoUrl)
+    const salesPersonResponse = await fetch(salesPersonUrl);
+    const customerResponse = await fetch(customerUrl);
+    const autoResponse = await fetch(autoUrl);
 
     if (salesPersonResponse.ok) {
-      const data = await salesPersonResponse.json()
-      this.setState({ salespersons: data.salespersons })
+      const data = await salesPersonResponse.json();
+      this.setState({ salespersons: data.salespersons });
     }
 
     if (customerResponse.ok) {
-      const data = await customerResponse.json()
-      this.setState({ customers: data.customers })
+      const data = await customerResponse.json();
+      this.setState({ customers: data.customers });
     }
     if (autoResponse.ok) {
-      const automobileData = await autoResponse.json()
-      const inventory = []
+      const automobileData = await autoResponse.json();
+      const inventory = [];
       for (const auto of automobileData.autos) {
         if (!this.state.vins.includes(auto.vin)) {
-          inventory.push(auto)
+          inventory.push(auto);
         }
       }
-      this.setState({ automobiles: inventory })
+      this.setState({ automobiles: inventory });
     }
   }
   render() {
@@ -95,7 +95,7 @@ class SalesRecordForm extends React.Component {
       <div className="row">
         <div className="offset-3 col-6">
           <div className="text-center shadow p-4 mt-4">
-            <h1>Create a new sales record</h1>
+            <h1>Create A New Sales Record</h1>
             <form onSubmit={this.handleSubmit} id="create-sales-record-form">
               <div className="mb-3">
                 <label htmlFor="automobile">Automobile</label>
@@ -113,7 +113,7 @@ class SalesRecordForm extends React.Component {
                       <option key={automobile.vin} value={automobile.vin}>
                         {automobile.vin}
                       </option>
-                    )
+                    );
                   })}
                 </select>
               </div>
@@ -137,7 +137,7 @@ class SalesRecordForm extends React.Component {
                         {salesperson.salesperson_name}-
                         {salesperson.employee_number}
                       </option>
-                    )
+                    );
                   })}
                 </select>
               </div>
@@ -157,7 +157,7 @@ class SalesRecordForm extends React.Component {
                       <option value={customer.id} key={customer.id}>
                         {customer.customer_name}
                       </option>
-                    )
+                    );
                   })}
                 </select>
               </div>
@@ -184,7 +184,7 @@ class SalesRecordForm extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 

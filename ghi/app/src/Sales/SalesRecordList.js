@@ -92,7 +92,7 @@ class SalesRecordList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      salesrecords: [],
+      sales: [],
     };
   }
 
@@ -119,13 +119,13 @@ class SalesRecordList extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.sales?.map((salesrecord) => {
+            {this.state.sales?.map((sales) => {
               return (
-                <tr key={salesrecord.id}>
-                  <td>{salesrecord.salesperson}</td>
-                  <td>{salesrecord.customer}</td>
-                  <td>{salesrecord.automobile}</td>
-                  <td>{salesrecord.price}</td>
+                <tr key={sales.id}>
+                  <td>{sales.salesperson}</td>
+                  <td>{sales.customer}</td>
+                  <td>{sales.automobile}</td>
+                  <td>{sales.price}</td>
                 </tr>
               );
             })}
