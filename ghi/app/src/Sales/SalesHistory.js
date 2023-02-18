@@ -14,7 +14,7 @@ export default function SalesHistoryList() {
   };
 
   const fetchEmployeeNumber = async () => {
-    const url = "http://localhost:8090/api/sales/";
+    const url = "http://localhost:8090/api/salespersons/";
     const result = await fetch(url);
     const recordsJSON = await result.json();
     setEmployeeNumber(recordsJSON.salespersons.employee_number);

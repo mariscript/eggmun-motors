@@ -107,7 +107,7 @@ def api_appointment(request, pk):
 def api_appointments(request, vin_id=None):
     if request.method == "GET":
         if vin_id is None:
-            appointments = Appointment.objects.all().order_by('-id')
+            appointments = Appointment.objects.all().order_by('date_time')
         else:
             appointments = Appointment.objects.filter(vin=vin_id).order_by('-date_time')
         return JsonResponse(

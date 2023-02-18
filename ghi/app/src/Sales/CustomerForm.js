@@ -64,8 +64,7 @@ class CustomerForm extends React.Component {
               id="create-customer-form"
               onSubmit={this.handleSubmit}
             >
-              <div className="form-floating-mb-3">
-                <label htmlFor="customer_name">Customer Name</label>
+              <div className="form-floating mb-3">
                 <input
                   onChange={this.handleInputChange}
                   value={this.state.name}
@@ -75,21 +74,22 @@ class CustomerForm extends React.Component {
                   id="customer_name"
                   className="form-control"
                 />
+                <label htmlFor="customer_name">Customer Name</label>
               </div>
-              <label htmlFor="address">Address</label>
+
               <div className="form-floating mb-3">
                 <input
                   onChange={this.handleInputChange}
                   value={this.state.address}
-                  placeholder=""
+                  placeholder="Address"
                   required_type="text"
                   name="address"
                   id="address"
                   className="form-control"
                 />
+                <label htmlFor="address">Address</label>
               </div>
-              <div className="form-floating-mb-3">
-                <label htmlFor="phone_number">Phone Number</label>
+              <div className="form-floating mb-3">
                 <input
                   onChange={this.handleInputChange}
                   value={this.state.phone_number}
@@ -99,11 +99,12 @@ class CustomerForm extends React.Component {
                   id="phone_number"
                   className="form-control"
                 />
+                <label htmlFor="phone_number">Phone Number</label>
               </div>
               <button className="btn btn-success">Create</button>
             </form>
             <div className={successClassName} id="success-message">
-              Customer has been created
+              Customer has been created.
             </div>
           </div>
         </div>

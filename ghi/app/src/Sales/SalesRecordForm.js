@@ -98,7 +98,9 @@ class SalesRecordForm extends React.Component {
             <h1>Create A New Sales Record</h1>
             <form onSubmit={this.handleSubmit} id="create-sales-record-form">
               <div className="mb-3">
-                <label htmlFor="automobile">Automobile</label>
+                <label htmlFor="automobile" className="mb-2">
+                  Automobile
+                </label>
                 <select
                   onChange={this.handleInputChange}
                   value={this.state.automobile}
@@ -111,14 +113,18 @@ class SalesRecordForm extends React.Component {
                   {this.state.automobiles?.map((automobile) => {
                     return (
                       <option key={automobile.vin} value={automobile.vin}>
-                        {automobile.vin}
+                        {automobile.year} {automobile.color}{" "}
+                        {automobile.model.manufacturer.name}{" "}
+                        {automobile.model.name} {automobile.vin}
                       </option>
                     );
                   })}
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="salesperson">Salesperson</label>
+                <label htmlFor="salesperson" className="mb-2">
+                  Salesperson
+                </label>
                 <select
                   onChange={this.handleInputChange}
                   value={this.state.salesperson}
@@ -142,7 +148,9 @@ class SalesRecordForm extends React.Component {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="customer">Customer</label>
+                <label htmlFor="customer" className="mb-2">
+                  Customer
+                </label>
                 <select
                   onChange={this.handleInputChange}
                   value={this.state.customer}
@@ -162,7 +170,9 @@ class SalesRecordForm extends React.Component {
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="price">Price</label>
+                <label htmlFor="price" className="mb-2">
+                  Price
+                </label>
                 <input
                   onChange={this.handleInputChange}
                   value={this.state.price}
