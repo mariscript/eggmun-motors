@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 export default function ServiceHistoryList() {
   const [appointments, setAppointments] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(appointments);
   const [vin, setVin] = useState([]);
 
   const fetchAppointments = async () => {

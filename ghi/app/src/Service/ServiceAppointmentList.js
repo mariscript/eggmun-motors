@@ -8,7 +8,6 @@ export default function AppointmentList() {
     const url = "http://localhost:8080/api/appointments/";
     const result = await fetch(url);
     const recordsJSON = await result.json();
-    console.log(recordsJSON);
     setAppointments(recordsJSON.appointments);
   };
 

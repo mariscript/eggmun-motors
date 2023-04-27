@@ -37,7 +37,6 @@ class ModelForm extends React.Component {
         
         if (response.ok) {
             const newModel = await response.json();
-            console.log(newModel)
             const cleared = {
                 name: '',
                 picture_url: '',
@@ -53,7 +52,6 @@ class ModelForm extends React.Component {
         const response = await fetch(url);
         if (response.ok) {
             const data = await response.json();
-            console.log(data);
             this.setState({ manufacturers: data.manufacturers });
         }
     }
@@ -87,7 +85,6 @@ class ModelForm extends React.Component {
                                 <select onChange={this.handleInputChange} value={this.state.manufacturer} required name="manufacturer_id" id="manufacturer_id" className="form-select">
                                     <option value="manufacturer_id">Choose A Manufacturer</option>
                                     {this.state.manufacturers.map(manufacturer => {
-                                        console.log(manufacturer);
                                         return (
                                             <option key={manufacturer.id} value={manufacturer.id}>
                                             {manufacturer.name}

@@ -43,7 +43,7 @@ class SalesRecordForm extends React.Component {
     const response = await fetch(SalesRecordUrl, fetchConfig);
     if (response.ok) {
       const newSalesRecord = await response.json();
-      console.log(newSalesRecord);
+
       const cleared = {
         automobile: "",
         salesperson: "",

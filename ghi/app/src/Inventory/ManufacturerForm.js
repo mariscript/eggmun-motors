@@ -34,7 +34,6 @@ class ManufacturerForm extends React.Component {
         
         if (response.ok) {
             const newManufacturer = await response.json();
-            console.log(newManufacturer)
             const cleared = {
                 name: '',
                 successCreate: true,

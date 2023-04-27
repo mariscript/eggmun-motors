@@ -1,16 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Zen+Dots&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Zen+Dots&display=swap");
 
 body {
   background: rgb(128, 128, 128);
   color: rgb(0, 0, 0);
   margin: 0;
-  font-family: 'Roboto Slab', serif;
-  font-family: 'Zen Dots', cursive;
+  font-family: "Roboto Slab", serif;
+  font-family: "Zen Dots", cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1 {
+  color: black;
+}
+
+.navbar {
+  color: black;
 }

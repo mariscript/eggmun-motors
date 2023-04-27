@@ -35,7 +35,6 @@ class TechnicianForm extends React.Component {
         
         if (response.ok) {
             const newTechnician = await response.json();
-            console.log(newTechnician)
             const cleared = {
                 name: '',
                 successCreate: true,
