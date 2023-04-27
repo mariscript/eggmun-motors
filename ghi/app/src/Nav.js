@@ -120,25 +120,11 @@ function Nav() {
                   </a>
                   <ul className="dropdown-menu">
                     <li>
-                      <NavLink className="dropdown-item" to="/customer/new">
-                        Create a Customer
-                      </NavLink>
-                    </li>
-                    <li>
                       <NavLink className="dropdown-item" to="/customers">
                         Customers
                       </NavLink>
                     </li>
-                    <li>
-                      <NavLink className="dropdown-item" to="/salesperson/new">
-                        Create a Sales Person
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink className="dropdown-item" to="/salesrecord/new">
-                        Create a Sales Record
-                      </NavLink>
-                    </li>
+  
                     <li>
                       <NavLink className="dropdown-item" to="/salespersons/">
                         Sales Persons
@@ -154,6 +140,23 @@ function Nav() {
                         Sales History
                       </NavLink>
                     </li>
+
+                    <li>
+                     <NavLink className="dropdown-item" to="/customer/new">
+                        Create a Customer
+                      </NavLink>
+                    </li> 
+                    <li>
+                      <NavLink className="dropdown-item" to="/salesperson/new">
+                        Create a Sales Person
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="dropdown-item" to="/salesrecord/new">
+                        Create a Sales Record
+                      </NavLink>
+                    </li>
+
                   </ul>
                 </li>
               </ul>

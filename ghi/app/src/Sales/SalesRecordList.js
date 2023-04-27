@@ -125,7 +125,7 @@ class SalesRecordList extends React.Component {
                   <td>{sales.salesperson}</td>
                   <td>{sales.customer}</td>
                   <td>{sales.automobile}</td>
-                  <td>{sales.price}</td>
+                  <td>${sales.price.toLocaleString()}</td>
                 </tr>
               );
             })}

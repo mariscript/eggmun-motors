@@ -65,7 +65,7 @@ export default function SalesHistoryList() {
                   <td>{salesrecord.salesperson}</td>
                   <td>{salesrecord.customer}</td>
                   <td>{salesrecord.automobile}</td>
-                  <td>{salesrecord.price}</td>
+                  <td>${salesrecord.price.toLocaleString()}</td>
                 </tr>
               );
             })}
