@@ -148,19 +148,62 @@ def api_salesperson(request, pk):
             return response
 
 
+# @require_http_methods(["GET", "POST"])
+# def api_salesrecords(request, employee_number=None):
+#    if request.method == "GET":
+#         if employee_number is None:
+#             sales = SalesRecord.objects.all()
+#             return JsonResponse(
+#             {"sales": sales},
+#             encoder=SalesRecordEncoder
+#         )
+#    else:
+#         content = json.loads(request.body)
+#         vin = content["automobile"]
+#         automobile = AutomobileVO.objects.get(vin=vin)
+#         content["automobile"] = automobile
+
+#         salesperson = SalesPerson.objects.get(employee_number=content["salesperson"])
+#         content["salesperson"] = salesperson
+
+#         customer = Customer.objects.get(id=content["customer"])
+#         content["customer"] = customer
+#         # try:
+#         #     vin = AutomobileVO.objects.get(vin=automobile)
+#         #     if SalesRecord.objects.get(automobile=vin):
+#         #         return JsonResponse(
+#         #         {"message": "Automobile already sold."},
+#         #         status=404
+#         #     )
+#         # except:
+#    sale = SalesRecord.objects.create(**content)
+#    return JsonResponse(
+#         sale,
+#         encoder=SalesRecordEncoder,
+#         safe=False,
+#     )
+
 @require_http_methods(["GET", "POST"])
 def api_salesrecords(request, employee_number=None):
    if request.method == "GET":
         if employee_number is None:
             sales = SalesRecord.objects.all()
             return JsonResponse(
-            {"sales": sales},
-            encoder=SalesRecordEncoder
-        )
+                {"sales": sales},
+                encoder=SalesRecordEncoder
+            )
    else:
         content = json.loads(request.body)
         vin = content["automobile"]
         automobile = AutomobileVO.objects.get(vin=vin)
+
+        # check if the vehicle has already been sold
+        if SalesRecord.objects.filter(automobile=automobile).exists():
+            return JsonResponse(
+                {"error": "Vehicle has already been sold"},
+                status=400
+            )
+
         content["automobile"] = automobile
 
         salesperson = SalesPerson.objects.get(employee_number=content["salesperson"])
@@ -168,20 +211,13 @@ def api_salesrecords(request, employee_number=None):
 
         customer = Customer.objects.get(id=content["customer"])
         content["customer"] = customer
-        # try:
-        #     vin = AutomobileVO.objects.get(vin=automobile)
-        #     if SalesRecord.objects.get(automobile=vin):
-        #         return JsonResponse(
-        #         {"message": "Automobile already sold."},
-        #         status=404
-        #     )
-        # except:
-   sale = SalesRecord.objects.create(**content)
-   return JsonResponse(
-        sale,
-        encoder=SalesRecordEncoder,
-        safe=False,
-    )
+
+        sale = SalesRecord.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SalesRecordEncoder,
+            safe=False,
+        )
 
 
 @require_http_methods(["DELETE", "GET", "PUT"])

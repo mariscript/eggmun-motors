@@ -121,7 +121,7 @@ class AppointmentForm extends React.Component {
               </div>
               <div className="mb-3">
                 <label htmlFor="reason" className="form-label">
-                  Reason For Appointment
+                  Reason
                 </label>
                 <textarea
                   onChange={this.handleInputChange}

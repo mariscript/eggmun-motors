@@ -51,7 +51,7 @@ export default function ServiceHistoryList() {
               <th>Date</th>
               <th>Time</th>
               <th>Technician</th>
-              <th>Reason for Appointment</th>
+              <th>Reason</th>
               <th>Status</th>
             </tr>
           </thead>

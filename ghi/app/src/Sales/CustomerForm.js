@@ -145,7 +145,7 @@ function CustomerForm() {
     const response = await fetch(customersUrl, fetchConfig);
 
     if (response.ok) {
-      const newCustomer = await response.json();
+      // const newCustomer = await response.json();
       const cleared = {
         customer_name: "",
         address: "",
